@@ -1,0 +1,426 @@
+### Guía Básica de Funciones y Operaciones en Java
+
+Esta guía contiene las principales funciones y operaciones básicas en Java, que puedes usar como referencia rápida durante tu aprendizaje.
+
+---
+
+### 1. Entrada y Salida de Datos
+
+#### Entrada de datos
+
+```java
+import java.util.Scanner;
+
+Scanner sc = new Scanner(System.in);
+
+// Leer un entero
+int numero = sc.nextInt();
+
+// Leer un decimal
+double decimal = sc.nextDouble();
+
+// Leer una cadena
+String texto = sc.next(); // Solo una palabra
+String lineaCompleta = sc.nextLine(); // Línea completa
+```
+
+#### Salida de datos
+
+```java
+System.out.println("Texto con salto de línea");
+System.out.print("Texto sin salto de línea");
+System.out.printf("Formato: %d, %.2f\n", 42, 3.1416);
+```
+
+---
+
+### Conversion de mayuscula y minuscula
+
+Para caracteres (char), usa 
+```java
+Character.toUpperCase(caracter) o 
+Character.toLowerCase(caracter).
+
+ cadenas (String), usa 
+
+texto.toUpperCase() 
+texto.toLowerCase()
+```
+
+### 2. Operaciones Matemáticas
+
+#### Operaciones básicas
+
+```java
+int suma = 5 + 3;
+int resta = 10 - 4;
+int multiplicacion = 6 * 7;
+double division = 15.0 / 2.0;
+int modulo = 17 % 3; // Resto de la división
+```
+
+#### Clase `Math`
+
+```java
+// Potencias y raíces
+double potencia = Math.pow(2, 3); // 2^3 = 8
+double raiz = Math.sqrt(16); // Raíz cuadrada de 16 = 4
+
+// Redondeos
+double redondeo = Math.round(3.6); // Redondear a 4
+double techo = Math.ceil(3.1); // Redondear hacia arriba a 4
+double piso = Math.floor(3.9); // Redondear hacia abajo a 3
+
+// Trigonometría
+double seno = Math.sin(Math.toRadians(30)); // Seno de 30°
+double coseno = Math.cos(Math.toRadians(60)); // Coseno de 60°
+```
+
+---
+
+### 3. Estructuras de Control
+
+#### Condicionales
+
+```java
+if (condicion) {
+    // Código si la condición es verdadera
+} else if (otraCondicion) {
+    // Código si la otra condición es verdadera
+} else {
+    // Código si ninguna condición es verdadera
+}
+
+// Operador ternario
+int max = (a > b) ? a : b;
+```
+
+#### Bucles
+
+```java
+// Bucle for
+for (int i = 0; i < 10; i++) {
+    System.out.println(i);
+}
+
+// Bucle while
+int i = 0;
+while (i < 10) {
+    System.out.println(i);
+    i++;
+}
+
+// Bucle do-while
+int j = 0;
+do {
+    System.out.println(j);
+    j++;
+} while (j < 10);
+```
+
+---
+
+### 4. Manejo de Cadenas (`String`)
+
+#### Métodos comunes de `String`
+
+```java
+String texto = "Hola Mundo";
+
+// Longitud
+int longitud = texto.length();
+
+// Verificar si la cadena está vacía
+if (texto.isEmpty()) {
+    System.out.println("La cadena está vacía");
+} else {
+    System.out.println("La cadena no está vacía");
+}
+
+// Comparar cadenas
+boolean esIgual = texto.equals("Hola"); // true o false
+boolean esIgualSinMayus = texto.equalsIgnoreCase("hola mundo");
+
+// Obtener caracteres
+char letra = texto.charAt(0); // 'H'
+
+// Subcadenas
+String subcadena = texto.substring(0, 4); // "Hola"
+
+// Buscar en cadenas
+int posicion = texto.indexOf("Mundo"); // 5
+boolean contiene = texto.contains("Hola"); // true
+
+// Reemplazar
+String reemplazo = texto.replace("Mundo", "Java"); // "Hola Java"
+
+// Transformar a mayúsculas/minúsculas
+String mayus = texto.toUpperCase();
+String minus = texto.toLowerCase();
+```
+
+---
+
+### 5. Arrays
+
+#### Declaración y inicialización
+
+```java
+// Declarar y asignar valores
+int[] numeros = {1, 2, 3, 4, 5};
+
+// Declarar e inicializar posteriormente
+int[] otrosNumeros = new int[5];
+otrosNumeros[0] = 10;
+otrosNumeros[1] = 20;
+```
+
+#### Recorrer un array
+
+```java
+for (int i = 0; i < numeros.length; i++) {
+    System.out.println(numeros[i]);
+}
+
+// Bucle for-each
+for (int num : numeros) {
+    System.out.println(num);
+}
+```
+
+---
+
+### 6. Conversión de Datos
+
+#### Conversión entre tipos primitivos
+
+```java
+int entero = 42;
+double decimal = (double) entero; // Conversión explícita
+```
+
+#### Conversión entre cadenas y números
+
+```java
+// De cadena a número
+int numero = Integer.parseInt("123");
+double decimal = Double.parseDouble("3.14");
+
+// De número a cadena
+String texto = String.valueOf(123);
+```
+
+---
+
+### 7. Manejo de Excepciones
+
+```java
+try {
+    int resultado = 10 / 0; // Esto lanza una excepción
+} catch (ArithmeticException e) {
+    System.out.println("Error: " + e.getMessage());
+} finally {
+    System.out.println("Este bloque siempre se ejecuta.");
+}
+```
+
+---
+
+### 8. Entrada/Salida de Archivos
+
+#### Escribir en un archivo
+
+```java
+import java.io.FileWriter;
+import java.io.IOException;
+
+try {
+    FileWriter writer = new FileWriter("archivo.txt");
+    writer.write("Hola, archivo!");
+    writer.close();
+} catch (IOException e) {
+    System.out.println("Ocurrió un error: " + e.getMessage());
+}
+```
+
+#### Leer desde un archivo
+
+```java
+import java.io.File;
+import java.io.FileNotFoundException;
+import java.util.Scanner;
+
+try {
+    File archivo = new File("archivo.txt");
+    Scanner lector = new Scanner(archivo);
+    while (lector.hasNextLine()) {
+        String linea = lector.nextLine();
+        System.out.println(linea);
+    }
+    lector.close();
+} catch (FileNotFoundException e) {
+    System.out.println("Archivo no encontrado: " + e.getMessage());
+}
+```
+
+---
+
+### 9. Otras Utilidades
+
+#### Generar números aleatorios
+
+```java
+import java.util.Random;
+
+Random random = new Random();
+int aleatorio = random.nextInt(100); // Número entre 0 y 99
+double aleatorioDecimal = random.nextDouble(); // Decimal entre 0.0 y 1.0
+```
+
+#### Fechas y horas
+
+```java
+import java.time.LocalDate;
+import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
+
+// Fecha actual
+LocalDate fecha = LocalDate.now();
+System.out.println("Fecha actual: " + fecha);
+
+// Fecha y hora actual
+LocalDateTime fechaHora = LocalDateTime.now();
+System.out.println("Fecha y hora actual: " + fechaHora);
+
+// Formatear fecha y hora
+DateTimeFormatter formato = DateTimeFormatter.ofPattern("dd/MM/yyyy HH:mm:ss");
+System.out.println("Fecha formateada: " + fechaHora.format(formato));
+```
+
+---
+
+### 10. Trabajando con Números Binarios
+
+#### Convertir decimal a binario
+
+```java
+int decimal = 10;
+String binario = Integer.toBinaryString(decimal);
+String hexadecimal = Integer.toHexString(decimal); // Convertir a hexadecimal
+System.out.println("Hexadecimal: " + hexadecimal);
+System.out.println("Binario: " + binario);
+```
+
+#### Convertir binario a decimal
+
+```java
+String binario = "1010";
+int decimal = Integer.parseInt(binario, 2);
+System.out.println("Decimal: " + decimal);
+```
+
+---
+
+### 11. Formateo Avanzado con `printf`
+
+#### Tiempos (Horas, Minutos, Segundos)
+
+```java
+int hora = 5, minutos = 7, segundos = 9;
+System.out.printf("Tiempo: %02d:%02d:%02d\n", hora, minutos, segundos);
+// Salida: Tiempo: 05:07:09
+```
+
+#### Fechas
+
+```java
+int dia = 4, mes = 9, anio = 2024;
+System.out.printf("Fecha: %02d/%02d/%04d\n", dia, mes, anio);
+// Salida: Fecha: 04/09/2024
+```
+
+#### Números con Ceros a la Izquierda
+
+```java
+int numero = 42;
+System.out.printf("Número formateado: %05d\n", numero);
+// Salida: Número formateado: 00042
+```
+
+#### Números Decimales con Formato Fijo
+
+```java
+double pi = 3.14159265359;
+System.out.printf("Pi con 2 decimales: %.2f\n", pi
+```
+
+```java
+//mostrar tabla
+Arrays.toString(aqui va el nombre de la tabla);
+System.out.println(Arrays.toString());
+
+----Resumen: Declaración según la utilidad
+
+//Recibir un array como parámetro:
+public static void procesarArray(int[] array) { ... }
+
+//Devolver un array:
+public static int[] generarArray() { ... }
+
+//Modificar un array (en su lugar):
+public static void modificarArray(int[] array) { ... }
+
+//Trabajar con arrays multidimensionales:
+public static void procesarMatriz(int[][] matriz) { ... }
+
+// busqueda binaria (dicotomica)
+static int binarySearch(tipo t[], tipo claveBusqueda);
+/*
+DEVUELVE EL INDICE DONDE SE ENCUENTRA EL ELEMENTO, O VALOR NEGATIVO SI NO LO ENCUENTRA
+EL VALOR NEGATIVO INDICA DONDE DEBERIA IR LA INSERCION DEL ELEMENTO QUE SE ESTA BUSCANDO SI NO
+LO HAY (-POS - 1)
+*/
+
+static int binarySearch(tipo t[], int desde, int hasta, tipo claveBusqueda); //buscar en un rango. no incluye el hasta.
+
+
+static tipo[] copyOF(tipo origen[], int longitud); // hace una copia de la tabla y longitud especificada
+
+static tipo[] copyOFRange(tipo origen[], int desde, int hasta) (crea y devuelve una copia del rango pasado, sin incluir en hasta(-1 indice))
+
+void arraycopy(Object tablaOrigen, int posOrigen, Object tablaDestino, int posDestino, int longitud) 
+/*
+copia en la tala destino desde un indice selecionado hasta otro tambien selecionado. debe estar creada la tabla destino 
+*/
+
+
+//eliminar duplicados en un array
+import java.util.Arrays;
+
+public class EjemploDistinct {
+    public static void main(String[] args) {
+        int[] arrayConRepetidos = {1, 2, 2, 3, 4, 4, 5, 6, 6, 7, 8, 8, 9, 10, 10};
+        
+        // Convertir el array a un flujo, eliminar duplicados y convertir de nuevo a un array
+        int[] arraySinRepetidos = Arrays.stream(arrayConRepetidos).distinct().toArray();
+        
+        // Imprimir el array resultante
+        System.out.println("Array original: " + Arrays.toString(arrayConRepetidos));
+        System.out.println("Array sin repetidos: " + Arrays.toString(arraySinRepetidos));
+    }
+}
+
+/*
+Explicación del Ejemplo
+Convertimos el array arrayConRepetidos en un flujo usando Arrays.stream(arrayConRepetidos).
+
+Aplicamos distinct() al flujo para eliminar los elementos duplicados.
+
+Convertimos el flujo resultante de vuelta a un array usando toArray().
+
+Imprimimos el array original y el array sin duplicados para ver la diferencia.
+*/
+
+
+
+```
