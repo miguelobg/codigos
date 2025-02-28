@@ -1,0 +1,56 @@
+CREATE TABLE public."PARTICIPES" (
+    id SERIAL PRIMARY KEY,
+    nombre VARCHAR(255),
+    apellidos VARCHAR(255),
+    dni VARCHAR(20),
+    direccion VARCHAR(255),
+    email VARCHAR(255),
+    nom_contacto VARCHAR(255),
+    tel_contacto VARCHAR(20),
+    bancario VARCHAR(20),
+    iban VARCHAR(34),
+    baja VARCHAR(5)  -- Se asume que 'baja' es de tipo VARCHAR
+);
+
+CREATE TABLE public."CERTIFICADOS" (
+    id SERIAL PRIMARY KEY,
+    codigo VARCHAR(20),
+    num_acciones INT,
+    prop_anterior VARCHAR(255),
+    duplicado VARCHAR(3),
+    liberado VARCHAR(3),
+    fk_id_participe INT,
+    FOREIGN KEY (fk_id_participe) REFERENCES public."PARTICIPES"(id)
+);
+
+CREATE TABLE public."CUOTAS" (
+    id SERIAL PRIMARY KEY,
+    precio DECIMAL
+);
+
+CREATE TABLE public."PROVEEDORES" (
+    id SERIAL PRIMARY KEY,
+    nombre VARCHAR(255)
+);
+
+CREATE TABLE public."PROVEEDORES_PARTICIPES" (
+    proveedor_id INT,
+    participe_id INT,
+    FOREIGN KEY (proveedor_id) REFERENCES public."PROVEEDORES"(id),
+    FOREIGN KEY (participe_id) REFERENCES public."PARTICIPES"(id)
+);
+
+CREATE TABLE public."RECIBOS" (
+    id SERIAL PRIMARY KEY,
+    recibo_num VARCHAR(20),
+    importe DECIMAL,
+    fecha_exp DATE,
+    vencimiento DATE,
+    descripcion VARCHAR(255),
+    num_acciones_total INT,
+    nombre_part VARCHAR(255),
+    direccion VARCHAR(255),
+    pagado CHAR(1),
+    fk_id_participe INT,
+    FOREIGN KEY (fk_id_participe) REFERENCES public."PARTICIPES"(id)
+);
